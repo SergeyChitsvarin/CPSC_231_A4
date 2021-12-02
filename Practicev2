@@ -1,7 +1,7 @@
-class Person:
-    def __init__(self, name, height):
-        self.name = name
-        self.height = height
+# class Person:
+#     def __init__(self, name, height):
+#         self.name = name
+#         self.height = height
 
     # def calc_area(self):
     #     area = self.width * self.length
@@ -12,13 +12,24 @@ class Person:
     #     return perimeter
 
 
-sergey = Person("Sergey", 168)
-olga = Person("Olga", 161)
+# sergey = Person("Sergey", 168)
+# olga = Person("Olga", 161)
 
 
 
-print(sergey.name)
-print(olga.height)
+# print(sergey.name)
+# print(olga.height)
 # print(r.calc_area())
 # print(r.perimeter())
 
+def __int__(self, other):
+        list_of_trees.sort(reverse=True)
+        if self.count > other.count:
+            return True
+        elif self.count == other.count:
+            if self.char > other.char:
+                return True
+            else:
+                return False
+        else:
+            return False

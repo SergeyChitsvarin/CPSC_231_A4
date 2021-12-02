@@ -39,8 +39,17 @@ class HuffmanTree:
         self.bit = bit
 
     # PART2 (order)
-
+    def __lt__(other, self):
+        if self.count > other.count:
+            return True
+        if self.count < other.count:
+            return False
+        if self.char > other.char:
+            return True
+        else:
+            return False
     # PART3 (string)
+    def __str__(self):
 
     # PART3 (representation)
 
@@ -49,22 +58,22 @@ class HuffmanTree:
     # PART1 (make_trees)
     @staticmethod
     def make_trees(dictionary):
-        # refferences:
+        # references: static method
         # https://stackoverflow.com/questions/735975/static-methods-in-python
         # https://www.programiz.com/python-programming/methods/built-in/classmethod
         list_of_trees = []
         for char in dictionary:
             # (char, count, left, right, bit):
             huffman_tree = HuffmanTree(char, dictionary[char], None, None, None)
-            # huffman_tree = [char, dictionary[char], lol.left, lol.right, lol.bit]
             list_of_trees.append(huffman_tree)
 
         return list_of_trees
 
 
-dictionary = {"a": 1, "b": 2}
+dictionary = {"a": 1, "b": 2, "c": 0, "d": 6}
 
 list_of_trees = (HuffmanTree.make_trees(dictionary))
+list_of_trees.sort(reverse=True)
 obj1 = (list_of_trees[0])
 obj2 = (list_of_trees[1])
 print(obj1.char)
