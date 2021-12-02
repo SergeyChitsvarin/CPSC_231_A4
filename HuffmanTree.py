@@ -31,6 +31,12 @@ class HuffmanTree:
     """
 
     # PART1 (constructor)
+    def __init__(self, char, count, left, right, bit):
+        self.char = char
+        self.count = count
+        self.left = left
+        self.right = right
+        self.bit = bit
 
     # PART2 (order)
 
@@ -40,7 +46,29 @@ class HuffmanTree:
 
     # PART5 (equality)
 
-# PART1 (make_trees)
+    # PART1 (make_trees)
+    @staticmethod
+    def make_trees(dictionary):
+        # refferences:
+        # https://stackoverflow.com/questions/735975/static-methods-in-python
+        # https://www.programiz.com/python-programming/methods/built-in/classmethod
+        list_of_trees = []
+        for char in dictionary:
+            # (char, count, left, right, bit):
+            huffman_tree = HuffmanTree(char, dictionary[char], None, None, None)
+            # huffman_tree = [char, dictionary[char], lol.left, lol.right, lol.bit]
+            list_of_trees.append(huffman_tree)
 
+        return list_of_trees
+
+
+dictionary = {"a": 1, "b": 2}
+
+list_of_trees = (HuffmanTree.make_trees(dictionary))
+obj1 = (list_of_trees[0])
+obj2 = (list_of_trees[1])
+print(obj1.char)
+print(obj2.count)
 
 # PART4 (merge)
+
