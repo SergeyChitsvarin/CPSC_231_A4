@@ -39,7 +39,8 @@ class HuffmanTree:
         self.bit = bit
 
     # PART2 (order)
-    def __lt__(other, self):
+    def __lt__(self, other):
+        # reference: using lt method in python https://www.pythonpool.com/python-__lt__/
         if self.count > other.count:
             return True
         if self.count < other.count:
@@ -49,7 +50,14 @@ class HuffmanTree:
         else:
             return False
     # PART3 (string)
+
     def __str__(self):
+        # reference: string method in python https://www.educative.io/edpresso/what-is-the-str-method-in-python
+        if self.bit != None:
+            bit = int(self.bit)
+        else:
+            bit = self.bit
+        return f'{self.char, self.count, self.left, self.right, bit}'
 
     # PART3 (representation)
 
@@ -66,18 +74,17 @@ class HuffmanTree:
             # (char, count, left, right, bit):
             huffman_tree = HuffmanTree(char, dictionary[char], None, None, None)
             list_of_trees.append(huffman_tree)
-
         return list_of_trees
 
 
 dictionary = {"a": 1, "b": 2, "c": 0, "d": 6}
 
 list_of_trees = (HuffmanTree.make_trees(dictionary))
-list_of_trees.sort(reverse=True)
 obj1 = (list_of_trees[0])
 obj2 = (list_of_trees[1])
-print(obj1.char)
-print(obj2.count)
+obj3 = HuffmanTree('d',5,'hro','wrld',0)
+obj4 = HuffmanTree('    ', 5, 6, 7, True)
+print(obj4)
 
 # PART4 (merge)
 

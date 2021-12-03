@@ -1,35 +1,20 @@
-# class Person:
-#     def __init__(self, name, height):
-#         self.name = name
-#         self.height = height
+class Overload:
 
-    # def calc_area(self):
-    #     area = self.width * self.length
-    #     return area
-    #
-    # def perimeter(self):
-    #     perimeter = (2 * self.width) + (2 * self.length)
-    #     return perimeter
+    def __init__(self, operator):
+        self.operator = operator
 
-
-# sergey = Person("Sergey", 168)
-# olga = Person("Olga", 161)
+    def __lt__(self, other):
+         if self.operator < other.operator:
+             return True
+         else:
+             return False
 
 
 
-# print(sergey.name)
-# print(olga.height)
-# print(r.calc_area())
-# print(r.perimeter())
+x = Overload(16)
+y = Overload(15)
+print(x == x)
+print(x == y)
+print(x < y)
+print(x > y)
 
-def __int__(self, other):
-        list_of_trees.sort(reverse=True)
-        if self.count > other.count:
-            return True
-        elif self.count == other.count:
-            if self.char > other.char:
-                return True
-            else:
-                return False
-        else:
-            return False
