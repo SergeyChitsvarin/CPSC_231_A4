@@ -1,0 +1,20 @@
+Making huffman tree!
+Original list of individual Huffman trees (str):
+('b',2,None,None,None)
+('a',1,None,None,None)
+
+Merging trees to make a complete Huffman Tree:
+Merging tree ('a',1,None,None,None) and ('b',2,None,None,None) to make ('ab',3,'a','b',None)
+	Merged child trees left ('a',1,None,None,0) and right ('b',2,None,None,1)
+Merging done!
+Final tree
+('ab',3,'a','b',None)
+
+
+Original text was 3 characters in length which, with 1 byte per character, would be 3 ASCII bytes!
+The encoding table is:
+'a':0
+'b':1
+New text is 3 bits in length, which is 1 bytes! (Plus we'd also have to store the decoding table as well.)
+That is 33.33% of the size
+Program completed successfully!

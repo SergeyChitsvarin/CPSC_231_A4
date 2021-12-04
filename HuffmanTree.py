@@ -66,7 +66,12 @@ class HuffmanTree:
 
     # PART5 (equality)
     def __eq__(self, other):
-
+        if other is None:
+            return False
+        if self.char == other.char and self.left == other.left and self.right == other.right:
+            return True
+        else:
+            return False
 
 # PART1 (make_trees)
 
