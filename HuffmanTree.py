@@ -53,11 +53,19 @@ class HuffmanTree:
     # PART3 (string)
     def __str__(self):
         # reference: string method in python https://www.educative.io/edpresso/what-is-the-str-method-in-python
-        if self.bit != None:
+        if self.bit is not None:
             bit = int(self.bit)
         else:
             bit = self.bit
-        return f'{self.char, self.count, self.left, self.right, bit}'
+        if self.left is None:
+            left = None
+        else:
+            left = repr(self.left.char)
+        if self.right is None:
+            right = None
+        else:
+            right = repr(self.right.char)
+        return f"({repr(self.char)},{self.count},{left},{right},{bit})"
 
     # PART3 (representation)
     def __repr__(self):
@@ -72,6 +80,7 @@ class HuffmanTree:
             return True
         else:
             return False
+
 
 # PART1 (make_trees)
 
@@ -99,19 +108,23 @@ def merge(t1, t2):
     bit = None
     a.bit = 0
     b.bit = 1
-    print(f'a = {a}')
-    print(f'b = {b}')
     return HuffmanTree(char, count, left, right, bit)
 
 
-dictionary = {"o": 10, "l": 15, "w": 5, "h": 5, "r": 5, "d": 5, "e": 5}
+# dictionary = {"o": 10, "l": 15, "w": 5, "h": 5, "r": 5, "d": 5, "e": 5}
+#
+# list_of_trees = (make_trees(dictionary))
+# obj1 = (list_of_trees[0])
+# obj2 = (list_of_trees[1])
+# obj3 = HuffmanTree('b', 5, None, None, True)
 
-list_of_trees = (make_trees(dictionary))
-obj1 = (list_of_trees[0])
-obj2 = (list_of_trees[1])
-obj3 = HuffmanTree('d', 5, 'hro', 'world', 0)
-obj4 = HuffmanTree('    ', 5, 6, 7, True)
-# print(obj1)
-# print(obj2)
+# print(obj3)
+
 # print(obj1 < obj2)
-merge(obj1, obj2)
+# merge(obj1, obj2)
+# print(f"({4},{5})")
+# print(repr(""))
+child_left = HuffmanTree('l', 10, None, None, False)
+child_right = HuffmanTree('r', 10, None, None, True)
+obj4 = HuffmanTree('\t', 5, child_left, child_right, True)
+print(obj4)
