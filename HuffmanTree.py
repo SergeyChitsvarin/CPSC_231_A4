@@ -69,8 +69,14 @@ class HuffmanTree:
 
     # PART3 (representation)
     def __repr__(self):
-        return 'Huffman Tree(' + repr(self.char) + ',' + repr(self.count) + ',' + repr(self.left) + ',' + repr(
-            self.right) + ',' + repr(self.bit) + ')'
+        if self.bit == 1:
+            bit = True
+        if self.bit == 0:
+            bit = False
+        if self.bit is None:
+            bit = None
+        return "HuffmanTree(" + repr(self.char) + "," + repr(self.count) + "," + repr(self.left) + "," + repr(
+            self.right) + "," + repr(bit) + ")"
 
     # PART5 (equality)
     def __eq__(self, other):
@@ -124,7 +130,7 @@ def merge(t1, t2):
 # merge(obj1, obj2)
 # print(f"({4},{5})")
 # print(repr(""))
-child_left = HuffmanTree('l', 10, None, None, False)
-child_right = HuffmanTree('r', 10, None, None, True)
-obj4 = HuffmanTree('\t', 5, child_left, child_right, True)
-print(obj4)
+child_left = HuffmanTree('l', 10, None, None, 1)
+child_right = HuffmanTree('r', 10, None, None, 0)
+obj4 = HuffmanTree('haha', 5, child_left, child_right, 0)
+print(HuffmanTree.__repr__(obj4))
