@@ -49,8 +49,8 @@ class HuffmanTree:
             return True
         else:
             return False
-    # PART3 (string)
 
+    # PART3 (string)
     def __str__(self):
         # reference: string method in python https://www.educative.io/edpresso/what-is-the-str-method-in-python
         if self.bit != None:
@@ -60,31 +60,53 @@ class HuffmanTree:
         return f'{self.char, self.count, self.left, self.right, bit}'
 
     # PART3 (representation)
+    def __repr__(self):
+        return 'Huffman Tree(' + repr(self.char) + ',' + repr(self.count) + ',' + repr(self.left) + ',' + repr(
+            self.right) + ',' + repr(self.bit) + ')'
 
     # PART5 (equality)
-
-    # PART1 (make_trees)
-    @staticmethod
-    def make_trees(dictionary):
-        # references: static method
-        # https://stackoverflow.com/questions/735975/static-methods-in-python
-        # https://www.programiz.com/python-programming/methods/built-in/classmethod
-        list_of_trees = []
-        for char in dictionary:
-            # (char, count, left, right, bit):
-            huffman_tree = HuffmanTree(char, dictionary[char], None, None, None)
-            list_of_trees.append(huffman_tree)
-        return list_of_trees
+    def __eq__(self, other):
 
 
-dictionary = {"a": 1, "b": 2, "c": 0, "d": 6}
+# PART1 (make_trees)
 
-list_of_trees = (HuffmanTree.make_trees(dictionary))
-obj1 = (list_of_trees[0])
-obj2 = (list_of_trees[1])
-obj3 = HuffmanTree('d',5,'hro','wrld',0)
-obj4 = HuffmanTree('    ', 5, 6, 7, True)
-print(obj4)
+def make_trees(dictionary):
+    list_of_trees = []
+    for char in dictionary:
+        huffman_tree = HuffmanTree(char, dictionary[char], None, None, None)
+        list_of_trees.append(huffman_tree)
+    return list_of_trees
+
 
 # PART4 (merge)
 
+def merge(t1, t2):
+    if t1 < t2:
+        a = t2
+        b = t1
+    else:
+        a = t1
+        b = t2
+    char = a.char + b.char
+    count = a.count + b.count
+    left = a
+    right = b
+    bit = None
+    a.bit = 0
+    b.bit = 1
+    print(f'a = {a}')
+    print(f'b = {b}')
+    return HuffmanTree(char, count, left, right, bit)
+
+
+dictionary = {"o": 10, "l": 15, "w": 5, "h": 5, "r": 5, "d": 5, "e": 5}
+
+list_of_trees = (make_trees(dictionary))
+obj1 = (list_of_trees[0])
+obj2 = (list_of_trees[1])
+obj3 = HuffmanTree('d', 5, 'hro', 'world', 0)
+obj4 = HuffmanTree('    ', 5, 6, 7, True)
+# print(obj1)
+# print(obj2)
+# print(obj1 < obj2)
+merge(obj1, obj2)
