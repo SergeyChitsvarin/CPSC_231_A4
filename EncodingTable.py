@@ -22,7 +22,19 @@ class EncodingTable:
 
     # PART 7 (recurse)
     def recurse(self, tree, code):
-        pass
+        # recursive call
+        if tree.bit is not None:
+            if tree.bit:
+                code = code + "1"
+            else:
+                code = code + "0"
+        # Base case
+        if (tree.left and tree.right) is None:
+            self.encode[tree.char] = code
+        # If not base case
+        else:
+            self.recurse(tree.left, code)
+            self.recurse(tree.right, code)
 
     # PART 6 (string)
 
@@ -41,3 +53,9 @@ class EncodingTable:
             else:
                 sys.exit(f"Can't encode symbol {char} as it isn't in the encoding table:\n{self}")
         return output_text
+
+    def __str__(self):
+        my_dictionary = self.encode
+        for key in my_dictionary:
+            return print(f"{repr(key)}:" + my_dictionary[key])
+

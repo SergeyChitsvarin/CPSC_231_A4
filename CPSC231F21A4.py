@@ -108,7 +108,6 @@ def main():
         raise e
 
     print(f"The encoding table is:\n{output_table}")
-
     # Create encoded string from the table for output
     try:
         encode_text = encoding_table.encode_text(text)

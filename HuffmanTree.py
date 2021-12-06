@@ -133,4 +133,4 @@ def merge(t1, t2):
 child_left = HuffmanTree('l', 10, None, None, 1)
 child_right = HuffmanTree('r', 10, None, None, 0)
 obj4 = HuffmanTree('haha', 5, child_left, child_right, 0)
-print(HuffmanTree.__repr__(obj4))
+# print(HuffmanTree.__repr__(obj4))
