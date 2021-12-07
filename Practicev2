@@ -1,30 +1,8 @@
-# class Overload:
-#
-#     def __init__(self, operator):
-#         self.operator = operator
-#
-#     def __lt__(self, other):
-#          if self.operator < other.operator:
-#              return True
-#          else:
-#              return False
-selfencode = {'a': 1, 'b': 2, 'c': 3}
 
+my_dictionary = {"a": 0, "b": 10, "c": 11}
+result = ""
+for key in my_dictionary:
+    result = result + f"{repr(key)}:{my_dictionary[key]}\n"
 
-# def star():
-#         my_dictionary = selfencode
-#         for key in my_dictionary:
-#             print(f'{repr(key)}: {repr(my_dictionary[key])}')
-#
-#
-# dictionary = star()
-# print(dictionary)
+print(result)
 
-def factorial(x):
-    """This is a recursive function
-    to find the factorial of an integer"""
-
-    if x == 1:
-        return 1
-    else:
-        return

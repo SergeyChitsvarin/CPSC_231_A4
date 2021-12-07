@@ -55,7 +55,13 @@ class EncodingTable:
         return output_text
 
     def __str__(self):
+        # Reference:
+        # Python String join() https://www.programiz.com/python-programming/methods/string/join
+        # print new line https://stackoverflow.com/questions/11497376/how-do-i-specify-new-lines-on-python-when-writing-on-files
         my_dictionary = self.encode
+        result = []
         for key in my_dictionary:
-            return print(f"{repr(key)}:" + my_dictionary[key])
-
+            result.append(f"{repr(key)}:{my_dictionary[key]}")
+        result.sort()
+        separation = "\n"
+        return separation.join(result)
