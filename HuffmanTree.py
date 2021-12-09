@@ -32,6 +32,14 @@ class HuffmanTree:
 
     # PART1 (constructor)
     def __init__(self, char, count, left, right, bit):
+        """
+    :param char: individual character
+    :param count: amount of times char appears
+    :param left: left tree char
+    :param right: right tree char
+    :param bit:
+    :return: constructor
+    """
         self.char = char
         self.count = count
         self.left = left
@@ -40,6 +48,11 @@ class HuffmanTree:
 
     # PART2 (order)
     def __lt__(self, other):
+        """
+    __lt__ method
+    :param other: other huffman Tree
+    :return: less than operator with said conditions
+    """
         # reference: using lt method in python https://www.pythonpool.com/python-__lt__/
         if self.count > other.count:
             return True
@@ -52,6 +65,10 @@ class HuffmanTree:
 
     # PART3 (string)
     def __str__(self):
+        """
+    __str__ method
+    :return: returns string representation of values
+    """
         # reference: string method in python https://www.educative.io/edpresso/what-is-the-str-method-in-python
         if self.bit is not None:
             bit = int(self.bit)
@@ -69,6 +86,10 @@ class HuffmanTree:
 
     # PART3 (representation)
     def __repr__(self):
+        """
+    __repr__ method
+    :return: string version of value and runs the value through the eval function with specific conditions.
+    """
         if self.bit == 1:
             bit = True
         if self.bit == 0:
@@ -80,6 +101,11 @@ class HuffmanTree:
 
     # PART5 (equality)
     def __eq__(self, other):
+        """
+    __eq__ method
+    :param other: other Huffman Tree
+    :return: the equality operator that compares Huffman tree to other Huffman Tree with given conditions.
+    """
         if other is None:
             return False
         if self.char == other.char and self.left == other.left and self.right == other.right:
@@ -91,6 +117,11 @@ class HuffmanTree:
 # PART1 (make_trees)
 
 def make_trees(dictionary):
+    """
+    function makes Huffman Trees
+    :param dictionary:
+    :return list_of_trees: a list of Huffman trees for each character
+    """
     list_of_trees = []
     for char in dictionary:
         huffman_tree = HuffmanTree(char, dictionary[char], None, None, None)
@@ -115,22 +146,3 @@ def merge(t1, t2):
     a.bit = 0
     b.bit = 1
     return HuffmanTree(char, count, left, right, bit)
-
-
-# dictionary = {"o": 10, "l": 15, "w": 5, "h": 5, "r": 5, "d": 5, "e": 5}
-#
-# list_of_trees = (make_trees(dictionary))
-# obj1 = (list_of_trees[0])
-# obj2 = (list_of_trees[1])
-# obj3 = HuffmanTree('b', 5, None, None, True)
-
-# print(obj3)
-
-# print(obj1 < obj2)
-# merge(obj1, obj2)
-# print(f"({4},{5})")
-# print(repr(""))
-child_left = HuffmanTree('l', 10, None, None, 1)
-child_right = HuffmanTree('r', 10, None, None, 0)
-obj4 = HuffmanTree('haha', 5, child_left, child_right, 0)
-# print(HuffmanTree.__repr__(obj4))

@@ -1,8 +1,49 @@
 
-my_dictionary = {"a": 0, "b": 10, "c": 11}
-result = ""
-for key in my_dictionary:
-    result = result + f"{repr(key)}:{my_dictionary[key]}\n"
 
-print(result)
+
+def flip_dict(my_dictionary):
+    new_dictionary = {}
+    for key in my_dictionary:
+        # print(key, my_dictionary[key])
+        new_dictionary[my_dictionary[key]] = key
+    return new_dictionary
+
+
+def convert_to_list(binary_string):
+    binary_list = list(binary_string)
+    return binary_list
+
+
+def separate_char(new_dictionary, binary_list):
+    key_list = list(new_dictionary.keys())
+    decoded_string = ""
+    key = ""
+    for char in binary_list:
+        if char in key_list and key == "":
+            # print(new_dictionary[char])
+            decoded_string = decoded_string + new_dictionary[char]
+            key = ""
+        else:
+            key = key + char
+        if key in key_list:
+            # print(new_dictionary[key])
+            decoded_string = decoded_string + new_dictionary[key]
+            key = ""
+
+    print(decoded_string)
+
+
+my_dictionary = {"a": "0",
+                 "b": "10",
+                 "c": "11"}
+binary_string = "00001010111111"
+
+new_dictionary = flip_dict(my_dictionary)
+binary_list = convert_to_list(binary_string)
+separate_char(new_dictionary, binary_list)
+
+
+too_ez = convert_to_list(binary_string)
+lol = flip_dict(my_dictionary)
+
 

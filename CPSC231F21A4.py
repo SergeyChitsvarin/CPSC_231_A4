@@ -108,6 +108,7 @@ def main():
         raise e
 
     print(f"The encoding table is:\n{output_table}")
+
     # Create encoded string from the table for output
     try:
         encode_text = encoding_table.encode_text(text)
@@ -127,7 +128,7 @@ def main():
 def check_args(args):
     """
     Check program arguments
-    :param args: sys.argv passed into function
+    :param args: sys.argv copy passed into function
     :return: Two input filenames
                     None for second if not given
                     Prompt for input if first and second not given
@@ -140,10 +141,10 @@ def check_args(args):
             Generate: python {args[0]} input_filename
             Compare: python {args[0]} input_filename1 input_filename2""")
     elif len(args) == 3:
-        input_filename = sys.argv[1]
-        input_filename2 = sys.argv[2]
+        input_filename = args[1]
+        input_filename2 = args[2]
     elif len(args) == 2:
-        input_filename = sys.argv[1]
+        input_filename = args[1]
     else:
         input_filename = input("Enter an input filename: ")
     return input_filename, input_filename2
@@ -312,13 +313,13 @@ def write_output(input_filename, output_table, encode_text):
         with open(output_filename_tbl, "w") as output_file:
             output_file.write(output_table)
     except IOError as ioe:
-        sys.exit(f"Error writing output file {output_filename_tbl}!\nIOError -> {ioe}")
+        sys.exit(f"Error writing output file 1 {output_filename_tbl}!\nIOError -> {ioe}")
     # Write encoded text
     try:
         with open(output_filename_chr, "w") as output_file:
             output_file.write(encode_text)
     except IOError as ioe:
-        sys.exit(f"Error writing output file {output_filename_chr}!\nIOError -> {ioe}")
+        sys.exit(f"Error writing output file 2{output_filename_chr}!\nIOError -> {ioe}")
     # Create binary output and write
     try:
         with open(output_filename_bin, "w+b") as output_file:
@@ -329,7 +330,7 @@ def write_output(input_filename, output_table, encode_text):
                 output_file.write(bytearray([int(binary_string, 2)]))
                 loc += 8
     except IOError as ioe:
-        sys.exit(f"Error writing output file {output_filename_bin}!\nIOError -> {ioe}")
+        sys.exit(f"Error writing output file 3 {output_filename_bin}!\nIOError -> {ioe}")
 
 
 def print_indented_tree(tree, level=0):
