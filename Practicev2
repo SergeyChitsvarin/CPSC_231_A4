@@ -42,21 +42,21 @@ def check_file_extension(filename):
         sys.exit(1)
 
 
-def read_file(filename):
+def read_file(text_path):
     """
     Read two files and return as strings
-    :param filename: The filename to read
-    :return: A string of contents of .tbl file as text and .txt as text2
+    :param text_path: The filename to read
+    :return: A string of contents
     """
     try:
-        if filename.endswith(".tbl"):
-            with open(filename) as input_file:
-                text = input_file.read()
-                return text
-        else:
-            with open(filename) as input_file2:
-                text2 = input_file2.read()
-                return text2
+        with open(text_path) as input_file:
+            keep_looping = True
+            while keep_looping:
+                char = input_file.read(1)
+                print(char)
+                if not char:
+                    keep_looping = False
+
     except IOError as ioe:
         sys.exit(f"Error reading input file!\nIOError -> {ioe}")
 
@@ -80,7 +80,6 @@ def make_dictionary(table_path):
                 if last_char == "\n":
                     key = key[:-1]
                 # remove first element in string https://stackoverflow.com/questions/4945548/remove-the-first-character-of-a-string
-                print(len(split_line))
                 value = split_line[0]
                 value = value[1:]
                 value = value[:-1]
@@ -94,16 +93,8 @@ def make_dictionary(table_path):
     return dictionary_from_tbl
 
 
-def flip_dict(dictionary_from_tbl):
-    new_dictionary = {}
-    for key in dictionary_from_tbl:
-        # print(key, dictionary_from_tbl[key])
-        new_dictionary[dictionary_from_tbl[key]] = key
-    return new_dictionary
-
-
-def convert_to_list(text2):
-    binary_list = list(text2)
+def convert_to_list(text_path):
+    binary_list = list(text_path)
     return binary_list
 
 
@@ -127,15 +118,14 @@ def separate_char(new_dictionary, binary_list):
 
 
 table_path = 'output\sampletree2.dat.tbl'
-
 dictionary_from_tbl = make_dictionary(table_path)
-
-#filename_2 = 'samplehello.dat.txt'
+text_path = 'samplehello.dat.txt'
 #text = read_file(table_path)
 
 #text2 = read_file(filename_2)
 # binary_list = convert_to_list(text2)
 # decoded_string = separate_char(dictionary_from_tbl, binary_list)
+read_file(text_path)
 print(dictionary_from_tbl)
 
 
