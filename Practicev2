@@ -1,16 +1,109 @@
+import sys
+ZERO = 0
+ONE = 1
+TWO = 2
+THREE = 3
 
 
+my_dictionary = {"a": "0",
+                 "b": "10",
+                 "c": "11"}
+binary_string = "00001010111111"
 
-def flip_dict(my_dictionary):
+
+# def two_or_less_arguments():
+#     """
+#     Function handles input
+#     :return filename: path to the tbl and/or txt file
+#     """
+#     if len(sys.argv) > ONE:
+#         # if any arguments are given they are written down as filename.
+#         if len(sys.argv) > TWO:
+#             print("too many arguments given should be 2")
+#             sys.exit(1)
+#         else:
+#             return sys.argv[1], sys.argv[2]
+#     else:
+#         # if no arguments were given the program will exit.
+#         print("not enough arguments given")
+#         sys.exit(1)
+
+
+def check_file_extension(filename):
+    """
+    Function checks if the extension of the file is ".dat.txt" or ".dat.tbl" if it is not the function exits the program.
+    :param: filename, the path given by the user to the necessary information to decode the string.
+    :return: Function goes through the filename making sure it will only be valid if the extension is ".dat.txt" or ".dat.tbl"
+    """
+    # Checking file extension https://coderedirect.com/questions/120290/how-can-i-check-the-extension-of-a-file
+    if filename.endswith('.dat.tbl') or filename.endswith('.dat.txt'):
+        # if filename does not end with ".dat.tbl"or ".dat.txt" the program exits and provides an explanation.
+        print(f"extension of the file '{filename}' is not '.dat.txt' or '.dat.tbl'. Exiting")
+        sys.exit(1)
+
+
+def read_file(filename):
+    """
+    Read two files and return as strings
+    :param filename: The filename to read
+    :return: A string of contents of .tbl file as text and .txt as text2
+    """
+    try:
+        if filename.endswith(".tbl"):
+            with open(filename) as input_file:
+                text = input_file.read()
+                return text
+        else:
+            with open(filename) as input_file2:
+                text2 = input_file2.read()
+                return text2
+    except IOError as ioe:
+        sys.exit(f"Error reading input file!\nIOError -> {ioe}")
+
+
+def make_dictionary(table_path):
+    dictionary_from_tbl = {}
+    try:
+        with open(table_path) as input_file:
+            list_of_lines = input_file.readlines()
+            # References:
+            # read line by line https://www.geeksforgeeks.org/read-a-file-line-by-line-in-python/
+            for line in list_of_lines:
+                split_line = line.split(":")
+                if len(split_line) == THREE:
+                    key = split_line[2]
+                else:
+                    key = split_line[1]
+                # last char in string https://thispointer.com/python-how-to-get-last-n-characters-in-a-string/#:~:text=The%20last%20character%20of%20a%20string%20has%20index%20position%20%2D1,in%20the%20square%20brackets%20i.e.&text=It%20returned%20a%20copy%20of%20the%20last%20character%20in%20the%20string.
+                # remove char from string https://careerkarma.com/blog/python-remove-character-from-string/
+                last_char = key[-1]
+                if last_char == "\n":
+                    key = key[:-1]
+                # remove first element in string https://stackoverflow.com/questions/4945548/remove-the-first-character-of-a-string
+                print(len(split_line))
+                value = split_line[0]
+                value = value[1:]
+                value = value[:-1]
+                if value == "\\n":
+                    value = "\n"
+                if len(split_line) == THREE:
+                    value = ":"
+                dictionary_from_tbl[key] = value
+    except IOError as ioe:
+        sys.exit(f"Error reading table file!\nIOError -> {ioe}")
+    return dictionary_from_tbl
+
+
+def flip_dict(dictionary_from_tbl):
     new_dictionary = {}
-    for key in my_dictionary:
-        # print(key, my_dictionary[key])
-        new_dictionary[my_dictionary[key]] = key
+    for key in dictionary_from_tbl:
+        # print(key, dictionary_from_tbl[key])
+        new_dictionary[dictionary_from_tbl[key]] = key
     return new_dictionary
 
 
-def convert_to_list(binary_string):
-    binary_list = list(binary_string)
+def convert_to_list(text2):
+    binary_list = list(text2)
     return binary_list
 
 
@@ -30,20 +123,25 @@ def separate_char(new_dictionary, binary_list):
             decoded_string = decoded_string + new_dictionary[key]
             key = ""
 
-    print(decoded_string)
+    return decoded_string
 
 
-my_dictionary = {"a": "0",
-                 "b": "10",
-                 "c": "11"}
-binary_string = "00001010111111"
+table_path = 'output\sampletree2.dat.tbl'
 
-new_dictionary = flip_dict(my_dictionary)
-binary_list = convert_to_list(binary_string)
-separate_char(new_dictionary, binary_list)
+dictionary_from_tbl = make_dictionary(table_path)
+
+#filename_2 = 'samplehello.dat.txt'
+#text = read_file(table_path)
+
+#text2 = read_file(filename_2)
+# binary_list = convert_to_list(text2)
+# decoded_string = separate_char(dictionary_from_tbl, binary_list)
+print(dictionary_from_tbl)
 
 
-too_ez = convert_to_list(binary_string)
-lol = flip_dict(my_dictionary)
+
+
+
+
 
 
