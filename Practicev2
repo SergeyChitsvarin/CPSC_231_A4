@@ -11,12 +11,12 @@ THREE = 3
 # binary_string = "00001010111111"
 
 
-def two_or_less_arguments():
+def dealing_with_arguments():
     """
     Function handles input
     :return filename: path to the tbl and/or txt file
     """
-    if len(sys.argv) > ONE:
+    if 4 > len(sys.argv) > TWO:
         # if any arguments are given they are written down as table_path and text_path depending on their ending.
         if sys.argv[1].endswith(".txt"):
             text_path, table_path = sys.argv[1], sys.argv[2]
@@ -33,17 +33,17 @@ def two_or_less_arguments():
         sys.exit(1)
 
 
-def check_file_extension(filename):
-    """
-    Function checks if the extension of the file is ".dat.txt" or ".dat.tbl" if it is not the function exits the program.
-    :param: filename, the path given by the user to the necessary information to decode the string.
-    :return: Function goes through the filename making sure it will only be valid if the extension is ".dat.txt" or ".dat.tbl"
-    """
-    # Checking file extension https://coderedirect.com/questions/120290/how-can-i-check-the-extension-of-a-file
-    if filename.endswith('.dat.tbl') or filename.endswith('.dat.txt'):
-        # if filename does not end with ".dat.tbl"or ".dat.txt" the program exits and provides an explanation.
-        print(f"extension of the file '{filename}' is not '.dat.txt' or '.dat.tbl'. Exiting")
-        sys.exit(1)
+# def check_file_extension(filename):
+#     """
+#     Function checks if the extension of the file is ".dat.txt" or ".dat.tbl" if it is not the function exits the program.
+#     :param: filename, the path given by the user to the necessary information to decode the string.
+#     :return: Function goes through the filename making sure it will only be valid if the extension is ".dat.txt" or ".dat.tbl"
+#     """
+#     # Checking file extension https://coderedirect.com/questions/120290/how-can-i-check-the-extension-of-a-file
+#     if filename.endswith('.dat.tbl') or filename.endswith('.dat.txt'):
+#         # if filename does not end with ".dat.tbl"or ".dat.txt" the program exits and provides an explanation.
+#         print(f"extension of the file '{filename}' is not '.dat.txt' or '.dat.tbl'. Exiting")
+#         sys.exit(1)
 
 
 def read_file(text_path):
@@ -55,14 +55,12 @@ def read_file(text_path):
     try:
         with open(text_path) as input_file:
             keep_looping = True
-            binary_list = []
             while keep_looping:
                 char = input_file.read(1)
-                binary_list.append(char)
+                print(char)
+
                 if not char:
                     keep_looping = False
-                    return binary_list
-
     except IOError as ioe:
         sys.exit(f"Error reading input file!\nIOError -> {ioe}")
 
@@ -119,13 +117,13 @@ def separate_char(new_dictionary, binary_list):
 
 
 def main():
-    text_path, table_path = two_or_less_arguments()
+    text_path, table_path = dealing_with_arguments()
     # table_path = 'samplehello.dat.tbl'
     dictionary_from_tbl = make_dictionary(table_path)
     # text_path = 'samplehello.dat.txt'
     binary_list = read_file(text_path)
     decoded_string = separate_char(dictionary_from_tbl, binary_list)
-    print(dictionary_from_tbl)
+    # print(dictionary_from_tbl)
     print(decoded_string)
 
 

@@ -33,12 +33,12 @@ class HuffmanTree:
     # PART1 (constructor)
     def __init__(self, char, count, left, right, bit):
         """
+    constructs a huffman tree using char, count, left, right and bit.
     :param char: individual character
     :param count: amount of times char appears
     :param left: left tree char
     :param right: right tree char
     :param bit:
-    :return: constructor
     """
         self.char = char
         self.count = count
@@ -119,11 +119,12 @@ class HuffmanTree:
 def make_trees(dictionary):
     """
     function makes Huffman Trees
-    :param dictionary:
+    :param dictionary: a dictionary in which the key is char and the value is count.
     :return list_of_trees: a list of Huffman trees for each character
     """
     list_of_trees = []
     for char in dictionary:
+        # making a huffman tree for each character then adding the trees to list.
         huffman_tree = HuffmanTree(char, dictionary[char], None, None, None)
         list_of_trees.append(huffman_tree)
     return list_of_trees
@@ -132,6 +133,13 @@ def make_trees(dictionary):
 # PART4 (merge)
 
 def merge(t1, t2):
+    """
+    The function takes to Huffman trees and merges them.
+    :param t1: one Huffman tree to be merged
+    :param t2: other Huffman tree to be merged
+    :return one Huffman tree merged from t1 and t2
+    """
+    # the program checks which tree is larger and assigns a to the bigger of the two.
     if t1 < t2:
         a = t2
         b = t1

@@ -22,6 +22,11 @@ class EncodingTable:
 
     # PART 7 (recurse)
     def recurse(self, tree, code):
+        """
+        A recursive function
+        :param tree: The HuffmanTree to use to build the EncodingTable dictionary encode
+        :param code: The current string code created so far.
+        """
         # recursive call
         if tree.bit is not None:
             if tree.bit:
@@ -55,12 +60,17 @@ class EncodingTable:
         return output_text
 
     def __str__(self):
+        """
+        __str__ method
+        :return Turns everything printed to string with specific conditions.
+        """
         # Reference:
         # Python String join() https://www.programiz.com/python-programming/methods/string/join
         # print new line https://stackoverflow.com/questions/11497376/how-do-i-specify-new-lines-on-python-when-writing-on-files
         my_dictionary = self.encode
         result = []
         for key in my_dictionary:
+            # loops through the dictionary and adds each key: value pair to a list.
             result.append(f"{repr(key)}:{my_dictionary[key]}")
         result.sort()
         separation = "\n"
