@@ -1,3 +1,9 @@
+# COURSE CPSC 231 FALL 2021
+# INSTRUCTOR: Jonathan Hudson
+# Tutorial: 02
+# ID: 30154758
+# Date: 2021/12/10
+# Description: Takes table and and text file paths from command line arguments and decodes text file using table.
 import sys
 ZERO = 0
 ONE = 1
@@ -19,7 +25,7 @@ def get_text_and_table_paths():
             (sys.argv[2].endswith(".txt") and sys.argv[1].endswith(".tbl"))):
         print("One of files should have extension .txt and another file should have .tbl extension")
         sys.exit(1)
-    # assign text and table file paths if first file is a text file.
+    # Assign text and table file paths if first file is a text file.
     if sys.argv[1].endswith(".txt"):
         text_file_path = sys.argv[1]
         table_file_path = sys.argv[2]

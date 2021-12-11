@@ -1,3 +1,9 @@
+# COURSE CPSC 231 FALL 2021
+# INSTRUCTOR: Jonathan Hudson
+# Tutorial: 02
+# ID: 30154758
+# Date: 2021/12/10
+# description: creates encoding table based on huffman tree.
 import sys
 
 
