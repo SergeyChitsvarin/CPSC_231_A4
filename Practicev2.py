@@ -101,7 +101,7 @@ def make_dictionary(table_path):
 def main():
     text_path, table_path = get_text_and_table_paths()
     dictionary_from_tbl = make_dictionary(table_path)
-    # dictionary_from_tbl = make_dictionary("output/fixing_error.txt.tbl")
+
     decode(text_path, dictionary_from_tbl)
 
 main()
