@@ -187,7 +187,7 @@ def read_file(filename):
     :return: A string of contents of file
     """
     try:
-        with open(filename) as input_file:
+        with open(filename, encoding="utf-8") as input_file:
             text = input_file.read()
     except IOError as ioe:
         sys.exit(f"Error reading input file {filename}!\nIOError -> {ioe}")

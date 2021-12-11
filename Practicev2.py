@@ -78,6 +78,7 @@ def make_dictionary(table_path):
                     key = split_line[2]
                 else:
                     key = split_line[1]
+                key
                 # last char in string https://thispointer.com/python-how-to-get-last-n-characters-in-a-string/#:~:text=The%20last%20character%20of%20a%20string%20has%20index%20position%20%2D1,in%20the%20square%20brackets%20i.e.&text=It%20returned%20a%20copy%20of%20the%20last%20character%20in%20the%20string.
                 # remove char from string https://careerkarma.com/blog/python-remove-character-from-string/
                 last_char = key[-1]
@@ -97,28 +98,10 @@ def make_dictionary(table_path):
     return dictionary_from_tbl
 
 
-def separate_char(new_dictionary, binary_list):
-    key_list = list(new_dictionary.keys())
-    decoded_string = ""
-    key = ""
-    for char in binary_list:
-        if char in key_list and key == "":
-            # print(new_dictionary[char])
-            decoded_string = decoded_string + new_dictionary[char]
-            key = ""
-        else:
-            key = key + char
-        if key in key_list:
-            # print(new_dictionary[key])
-            decoded_string = decoded_string + new_dictionary[key]
-            key = ""
-
-    return decoded_string
-
-
 def main():
     text_path, table_path = get_text_and_table_paths()
     dictionary_from_tbl = make_dictionary(table_path)
+    # dictionary_from_tbl = make_dictionary("output/fixing_error.txt.tbl")
     decode(text_path, dictionary_from_tbl)
 
 main()

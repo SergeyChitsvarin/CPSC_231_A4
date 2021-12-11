@@ -34,8 +34,8 @@ class EncodingTable:
             else:
                 code = code + "0"
         # Base case
-        if (tree.left and tree.right) is None:
-            self.encode[tree.char] = code
+        if (tree.left is None) and (tree.right is None):
+            self.encode[(tree.char)] = code
         # If not base case
         else:
             self.recurse(tree.left, code)
