@@ -23,7 +23,7 @@ class EncodingTable:
     # PART 7 (recurse)
     def recurse(self, tree, code):
         """
-        A recursive function
+        A recursive function to create tree
         :param tree: The HuffmanTree to use to build the EncodingTable dictionary encode
         :param code: The current string code created so far.
         """
@@ -35,7 +35,7 @@ class EncodingTable:
                 code = code + "0"
         # Base case
         if (tree.left is None) and (tree.right is None):
-            self.encode[(tree.char)] = code
+            self.encode[tree.char] = code
         # If not base case
         else:
             self.recurse(tree.left, code)

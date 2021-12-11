@@ -1,0 +1,13 @@
+# def read_binary(path):
+#     # references:
+#     # read binary file https://www.kite.com/python/answers/how-to-read-bytes-from-a-binary-file-in-python
+#     try:
+#         with open(path, "rb") as input_file:
+#             keep_looping = True
+#             while keep_looping:
+#                 byte = str(input_file.read(1))[4:][:-1]
+#                 print(bin(int(byte, 16))[2:])
+#                 if not byte:
+#                     keep_looping = False
+#     except IOError as ioe:
+#         sys.exit(f"Error reading input file!\nIOError -> {ioe}")
