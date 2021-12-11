@@ -11,54 +11,54 @@ THREE = 3
 # binary_string = "00001010111111"
 
 
-def dealing_with_arguments():
+def get_text_and_table_paths():
     """
     Function handles input
     :return filename: path to the tbl and/or txt file
     """
-    if 4 > len(sys.argv) > TWO:
-        # if any arguments are given they are written down as table_path and text_path depending on their ending.
-        if sys.argv[1].endswith(".txt"):
-            text_path, table_path = sys.argv[1], sys.argv[2]
-            return text_path, table_path
-        elif sys.argv[2].endswith(".txt"):
-            text_path, table_path = sys.argv[2], sys.argv[1]
-            return text_path, table_path
-        else:
-            print("given files were not the correct type")
-            sys.exit(1)
-    else:
+    if len(sys.argv) != THREE:
         # if no arguments were given the program will exit.
         print("not enough arguments given")
         sys.exit(1)
 
+    # if any arguments are given they are written down as table_path and text_path depending on their ending.
 
-# def check_file_extension(filename):
-#     """
-#     Function checks if the extension of the file is ".dat.txt" or ".dat.tbl" if it is not the function exits the program.
-#     :param: filename, the path given by the user to the necessary information to decode the string.
-#     :return: Function goes through the filename making sure it will only be valid if the extension is ".dat.txt" or ".dat.tbl"
-#     """
-#     # Checking file extension https://coderedirect.com/questions/120290/how-can-i-check-the-extension-of-a-file
-#     if filename.endswith('.dat.tbl') or filename.endswith('.dat.txt'):
-#         # if filename does not end with ".dat.tbl"or ".dat.txt" the program exits and provides an explanation.
-#         print(f"extension of the file '{filename}' is not '.dat.txt' or '.dat.tbl'. Exiting")
-#         sys.exit(1)
+    if not ((sys.argv[1].endswith(".txt") and sys.argv[2].endswith(".tbl")) or
+            (sys.argv[2].endswith(".txt") and sys.argv[1].endswith(".tbl"))):
+        print("One of files should have extension .txt and another file should have .tbl extension")
+        sys.exit(1)
+
+    if sys.argv[1].endswith(".txt"):
+        text_file_path = sys.argv[1]
+        table_file_path = sys.argv[2]
+        return text_file_path, table_file_path
+
+    text_file_path = sys.argv[2]
+    table_file_path = sys.argv[1]
+    return text_file_path, table_file_path
 
 
-def read_file(text_path):
+def decode(text_path, dictionary_from_tbl):
     """
-    Read two files and return as strings
+    Function reads file and decodes.
     :param text_path: The filename to read
     :return: A string of contents
     """
+    key_list = list(dictionary_from_tbl.keys())
+    decoded_string = ""
+    key = ""
     try:
         with open(text_path) as input_file:
+            
             keep_looping = True
             while keep_looping:
                 char = input_file.read(1)
-                print(char)
-
+                
+                key = key + char
+                if key in key_list:
+                     decoded_char = dictionary_from_tbl[key]
+                     print(decoded_char, end='')
+                     key = ""
                 if not char:
                     keep_looping = False
     except IOError as ioe:
@@ -117,14 +117,8 @@ def separate_char(new_dictionary, binary_list):
 
 
 def main():
-    text_path, table_path = dealing_with_arguments()
-    # table_path = 'samplehello.dat.tbl'
+    text_path, table_path = get_text_and_table_paths()
     dictionary_from_tbl = make_dictionary(table_path)
-    # text_path = 'samplehello.dat.txt'
-    binary_list = read_file(text_path)
-    decoded_string = separate_char(dictionary_from_tbl, binary_list)
-    # print(dictionary_from_tbl)
-    print(decoded_string)
-
+    decode(text_path, dictionary_from_tbl)
 
 main()
